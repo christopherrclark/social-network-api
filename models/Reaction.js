@@ -14,14 +14,15 @@ const reactionSchema = new Schema(
       maxLength: 280
     },
 
-    username {
+    username: {
       type: String,
       required: true
     },
+
     createdAt: {
       type: Date,
       default: Date.now,
-      get:  //?????
+      get: timestamp => dateFormat(timestamp)
     }
   },
 
@@ -29,7 +30,7 @@ const reactionSchema = new Schema(
     toJSON: {
       getters: true
     },
-    //id: false,   ???
+    id: false, 
   }
 );
 

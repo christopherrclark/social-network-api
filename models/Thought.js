@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const reactionSchema = require('./Reaction');
 
 const thoughtSchema = new mongoose.Schema(
   {
@@ -13,7 +14,7 @@ const thoughtSchema = new mongoose.Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: //????
+      get: timestamp => dateFormat(timestamp)
     },
 
     username: { 
@@ -21,7 +22,7 @@ const thoughtSchema = new mongoose.Schema(
       required: true
     },
 
-    reactions: [reationSchema]
+    reactions: [reactionSchema]
   }
 );
 
