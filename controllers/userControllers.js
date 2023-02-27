@@ -18,6 +18,7 @@ const userController = {
   // get single user
   getSingleUser(req,res){
     User.findOne({_id:req.params.userId})
+    .populate('thoughts')
     .then(function(user)
     {
       if (!user){
@@ -45,7 +46,7 @@ const userController = {
 
   // update user
   updateUser(req,res){
-    User.findByIdAndUpdate(req.params.userId, req.body, {new:true})
+    User.findByIdAndUpdate({_id:req.params.userId}, req.body, {new:true})
     .then(function(user){
       if (!user){
         return res.status(404).json({message: "no such user"})
@@ -60,7 +61,7 @@ const userController = {
 
   // delete user
   deleteUser(req,res){
-    User.findByIdAndDelete(req.params.userId)
+    User.findByIdAndDelete({_id:req.params.userId})
     .then(function(user){
       if (!user){
         return res.status(404).json({message: "no such user"})
@@ -76,7 +77,7 @@ const userController = {
   // add friend
   addFriend(req, res) {
     User.findByIdAndUpdate(
-      req.params.userId,
+      { _id:eq.params.userId },
       { $addToSet: { friends: req.params.friendId } },
       { new: true }
     )
@@ -95,7 +96,7 @@ const userController = {
   // delete friend
   deleteFriend(req, res) {
     User.findByIdAndUpdate(
-      req.params.userId,
+      { _id:req.params.userId },
       { $pull: { friends: req.params.friendId } },
       { new: true }
     )

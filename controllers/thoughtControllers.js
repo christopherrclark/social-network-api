@@ -3,7 +3,7 @@ const { User, Thought } = require('../models');
 const thoughtController = {
 
   // get all thoughts
-  getThoughts(res, req) {
+  getThoughts(req, res) {
     Thought.find()
       .then((thoughts) => {
         res.json(thoughts);
@@ -32,6 +32,11 @@ const thoughtController = {
   // create a new thought
   createThought(req, res) {
     Thought.create(req.body)
+      .then(( thought) => {
+        return User.findOneAndUpdate({ _id: req.body.userId },
+          { $push: {thoughts: thought._id }},{new: true})
+      })
+
       .then((thought) => {
         res.json(thought);
       })
@@ -61,7 +66,7 @@ const thoughtController = {
   },
   
   // delete a thought
-  deleteThought(req, req,) {
+  deleteThought(req, res,) {
     Thought.findOndAndDelete({ _id: req.params.thoughtId })
       .then((thought) => {
         if (!thought) {

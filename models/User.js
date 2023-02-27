@@ -41,8 +41,8 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-userSchema.virtuals('friendCount').get(function () {
-  return this.friend.length;
+userSchema.virtual('friendsCount').get(function () {
+  return this.friends.length;
 });
 
 const User = mongoose.model('User', userSchema);
