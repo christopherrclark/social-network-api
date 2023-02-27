@@ -14,7 +14,7 @@ const {
 router.route("/").get(getThoughts);
 
 // get single thought by ID
-router.route("/:thought/:id").get(getSingleThought);
+router.route("/:thoughtId").get(getSingleThought);
 
 // create a new thought
 router.route("/").post(createThought);

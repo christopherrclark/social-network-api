@@ -77,7 +77,7 @@ const userController = {
   // add friend
   addFriend(req, res) {
     User.findByIdAndUpdate(
-      { _id:eq.params.userId },
+      { _id: req.params.userId },
       { $addToSet: { friends: req.params.friendId } },
       { new: true }
     )
@@ -96,7 +96,7 @@ const userController = {
   // delete friend
   deleteFriend(req, res) {
     User.findByIdAndUpdate(
-      { _id:req.params.userId },
+      { _id: req.params.userId },
       { $pull: { friends: req.params.friendId } },
       { new: true }
     )

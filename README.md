@@ -1,3 +1,20 @@
+# Social Network Api
+
+## Project Summary
+
+The Goal of this assignment is to build an API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list.
+
+### Here is the link to a video demonstrating the final version of the project.
+
+[Click here to watch a video demonstrating my Social Network Api application.](https://drive.google.com/file/d/1Ao9Pmwrqm1J_u-eFX-b_41sfY7znN50a/view)
+
+### This is a screen shot .
+
+![This is a screen shot .](./assets/images/screenshot-first-half.png)
+
+
+
+
 # 18 NoSQL: Social Network API
 
 ## Your Task
