@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const reactionSchema = require('./Reaction');
+const { reactionSchema } = require('./Reaction');
+const dateFormat = require("../utils/dateFormat");
 
 const thoughtSchema = new mongoose.Schema(
   {
@@ -24,6 +25,7 @@ const thoughtSchema = new mongoose.Schema(
 
     reactions: [reactionSchema]
   },
+
   {
     toJSON: {
       virtuals: true,

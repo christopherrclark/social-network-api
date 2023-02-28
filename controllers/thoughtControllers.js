@@ -1,4 +1,4 @@
-const { User, Thought } = require('../models');
+const { User, Thought, Reaction } = require('../models');
 
 const thoughtController = {
 
@@ -108,10 +108,11 @@ const thoughtController = {
 
   // delete a reaction to a thought
   deleteReaction(req, res) {
+    console.log(req.params.thoughtId)
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $pull: { reactions: { reactionId: req.params.reactionId } } },
-      { new: true }
+      { runValidators: true, new: true }
     )
       .then((thought) => {
         if (!thought) {
@@ -119,6 +120,10 @@ const thoughtController = {
         }
         res.json(thought);
       })
+
+      // after reaction is deleted:
+      // find the associated thought, and update it by pulling the reaction id 
+      // from the reactions array inside the thought,
       .catch((err) => {
         console.error(err);
         res.status(404).json({ message: err });
